@@ -9,14 +9,16 @@
 | | English | Deutsch |
 |---|---|---|
 | 1541 Multi-Speeder V3 manual (hardware, parallel cable, C64 kernal, build instructions, BOM) | [PDF](manuals/en/MultiSpeeder1541_Manual.pdf) | [PDF](manuals/de/MultiSpeeder1541_Handbuch.pdf) |
-| DolphinDos26 manual (operation, commands, MS-Tools) | [DolphinDOS26](https://github.com/FraEgg/DolphinDOS26) | [DolphinDOS26](https://github.com/FraEgg/DolphinDOS26) |
+| DolphinDos26 manual (operation, commands, MS-Tools) | [DolphinDOS26](https://github.com/FraEgg/DolphinDOS) | [DolphinDOS26](https://github.com/FraEgg/DolphinDOS) |
 | Interactive bill of materials (open in a browser) | [HTML](hardware/bom/v3.3_1541_CPU_THT_DD3_Multi-Speeder_512KB_ibom.html) | [HTML](hardware/bom/v3.3_1541_CPU_THT_DD3_Multi-Speeder_512KB_ibom.html) |
 
 **Related projects:**
 
 | Project | Repository |
 |---|---|
-| DolphinDOS26: firmware, C64/C128 kernals, MS-Tools, manuals | [github.com/FraEgg/DolphinDOS26](https://github.com/FraEgg/DolphinDOS26) |
+| Multi-Speeder project: entry page with the basics on the Multi-Speeder V3, DolphinDos26, SpeedDos26 and accessories | [github.com/FraEgg/Switchless-Multi-Speeder-Project](https://github.com/FraEgg/Switchless-Multi-Speeder-Project) |
+| SpeedDos26: kernals for C64 and C128, firmware for 1541 and 1571, manual | [github.com/FraEgg/SpeedDOS](https://github.com/FraEgg/SpeedDOS) |
+| DolphinDOS26: firmware, C64/C128 kernals, MS-Tools, manuals | [github.com/FraEgg/DolphinDOS](https://github.com/FraEgg/DolphinDOS) |
 | Switchless 8x Multi-Floppy-Speeder for the external 1571 | [github.com/FraEgg/Switchless-Multi-Speeder-Commodore-1571](https://github.com/FraEgg/Switchless-Multi-Speeder-Commodore-1571) |
 | Switchless 8x Multi-Floppy-Speeder for the C128DCR (internal 1571) | [github.com/FraEgg/Switchless-Multi-Speeder-Commodore-C128DCR-1571](https://github.com/FraEgg/Switchless-Multi-Speeder-Commodore-C128DCR-1571) |
 
@@ -51,7 +53,7 @@ With **DolphinDos26** in the 1541 and a **DolphinDos26 kernal** in the computer,
 | [`hardware/gal`](hardware/gal) | GAL ATF16V8B (U7) | address decoder `ATF16V8_PAL_Adressendecoder_V3PIA_1541.jed` |
 | [`hardware/atmega328p`](hardware/atmega328p) | ATmega328P (U6) | ROM switcher firmware (`.hex`), source (`.ino`), XGecu project (`.mpj`) |
 
-The DolphinDos26 ROMs are the same as in the [DolphinDOS26](https://github.com/FraEgg/DolphinDOS26) release. The C128 kernal C128DolphinDos26 for C128 mode is available there as well. `C1541_29F040.BIN` is a ready-made template for the EPROM of the Multi-Speeder board. Every bank maps the address space of the drive directly (bank start + `$C000` = CPU address `$C000`): the 16 KB Commodore DOS sits at bank start + `$C000`, DolphinDOS 2.0 at + `$A000`, the DolphinDos26 banks are complete 64 KB images; unused areas are `$FF`. Program it as it is, or replace single banks with other DOS versions.
+The DolphinDos26 ROMs are the same as in the [DolphinDOS26](https://github.com/FraEgg/DolphinDOS) release. The C128 kernal C128DolphinDos26 for C128 mode is available there as well. `C1541_29F040.BIN` is a ready-made template for the EPROM of the Multi-Speeder board. Every bank maps the address space of the drive directly (bank start + `$C000` = CPU address `$C000`): the 16 KB Commodore DOS sits at bank start + `$C000`, DolphinDOS 2.0 at + `$A000`, the DolphinDos26 banks are complete 64 KB images; unused areas are `$FF`. Program it as it is, or replace single banks with other DOS versions.
 
 | Command | EPROM offset | Bank content of `C1541_29F040.BIN` | Message of `@` |
 |---|---|---|---|
@@ -135,7 +137,7 @@ ATmega328P fuse bytes: low `0xFF`, high `0xDE`, extended `0xFD`, lock bits `0xCF
 3. Open the 1541, take out the 6502 (1541: socket UC4, 1541-II: U3; socket it first if it is soldered in) and **remove the DOS ROMs** (1541: UB3 and UB4, 1541-II: U4) – the Multi-Speeder now supplies the DOS; a ROM left in place causes an address conflict.
 4. Plug the Multi-Speeder board into the CPU socket, put the 6502 into socket U1 of the board.
 5. Connect the parallel cable from CN2 to the user port of the computer (CN2 pin 1 CA2 → FLAG2, pins 2–9 PA0–PA7 → PB0–PB7, pin 10 CA1 ← PC2; manual chapter 2.4).
-6. In the computer, fit a DolphinDos26 kernal: `C64DolphinDos26.bin` (C64), `C64IIDolphinDos26.bin` (C64 II, and C64 mode of the C128); the C128 kernal for C128 mode is in the [DolphinDOS26](https://github.com/FraEgg/DolphinDOS26) release.
+6. In the computer, fit a DolphinDos26 kernal: `C64DolphinDos26.bin` (C64), `C64IIDolphinDos26.bin` (C64 II, and C64 mode of the C128); the C128 kernal for C128 mode is in the [DolphinDOS26](https://github.com/FraEgg/DolphinDOS) release.
 7. At the first start the drive reports `73,CBM DOS V2.6 1541` (bank 1). Switch with `OPEN 1,8,15,"I:8@RNROM":CLOSE 1`, the LED flashes eight times. `@` reports `73,DOLPHINDOS26 1541,00,00`, loading shows `LOADING DD:`.
 8. Test the RAM with `MS-MEMTEST` from the MS-Tools disk.
 
@@ -174,7 +176,7 @@ The C64 kernals [`C64DolphinDos26.bin`](rom/C64DolphinDos26.bin) and [`C64IIDolp
 
 **Please check for yourself whether your use calls for an official JiffyDOS licence:** <https://www.jiffydos.com>
 
-Details: [DolphinDOS26 – JiffyDOS licence](https://github.com/FraEgg/DolphinDOS26#jiffydos-licence-please-check).
+Details: [DolphinDOS26 – JiffyDOS licence](https://github.com/FraEgg/DolphinDOS#jiffydos-licence-please-check).
 
 ## Credits
 
@@ -224,7 +226,7 @@ Mit **DolphinDos26** in der 1541 und einem **DolphinDos26-Kernal** im Rechner bi
 | [`hardware/gal`](hardware/gal) | GAL ATF16V8B (U7) | Adressdecoder `ATF16V8_PAL_Adressendecoder_V3PIA_1541.jed` |
 | [`hardware/atmega328p`](hardware/atmega328p) | ATmega328P (U6) | Firmware des ROM-Umschalters (`.hex`), Quelltext (`.ino`), XGecu-Projekt (`.mpj`) |
 
-Die DolphinDos26-ROMs sind dieselben wie im Release von [DolphinDOS26](https://github.com/FraEgg/DolphinDOS26). Dort gibt es auch den C128-Kernal C128DolphinDos26 für den C128-Modus. `C1541_29F040.BIN` ist eine fertige Vorlage für das EPROM der Multi-Speeder-Platine. Jede Bank bildet den Adressraum des Laufwerks direkt ab (Bankanfang + `$C000` = CPU-Adresse `$C000`): Das 16 KB große Commodore-DOS liegt bei Bankanfang + `$C000`, DolphinDOS 2.0 bei + `$A000`, die DolphinDos26-Bänke sind vollständige 64-KB-Abbilder; ungenutzte Bereiche sind `$FF`. Sie kann direkt gebrannt werden, einzelne Bänke lassen sich durch andere DOS-Versionen ersetzen.
+Die DolphinDos26-ROMs sind dieselben wie im Release von [DolphinDOS26](https://github.com/FraEgg/DolphinDOS). Dort gibt es auch den C128-Kernal C128DolphinDos26 für den C128-Modus. `C1541_29F040.BIN` ist eine fertige Vorlage für das EPROM der Multi-Speeder-Platine. Jede Bank bildet den Adressraum des Laufwerks direkt ab (Bankanfang + `$C000` = CPU-Adresse `$C000`): Das 16 KB große Commodore-DOS liegt bei Bankanfang + `$C000`, DolphinDOS 2.0 bei + `$A000`, die DolphinDos26-Bänke sind vollständige 64-KB-Abbilder; ungenutzte Bereiche sind `$FF`. Sie kann direkt gebrannt werden, einzelne Bänke lassen sich durch andere DOS-Versionen ersetzen.
 
 | Befehl | EPROM-Offset | Bankinhalt von `C1541_29F040.BIN` | Meldung von `@` |
 |---|---|---|---|
@@ -303,7 +305,7 @@ Fuse-Bytes des ATmega328P: Low `0xFF`, High `0xDE`, Extended `0xFD`, Lock-Bits `
 3. Die 1541 öffnen, die 6502 herausnehmen (1541: Sockel UC4, 1541-II: U3; ist sie eingelötet, vorher einen Sockel einsetzen) und **die DOS-ROMs entfernen** (1541: UB3 und UB4, 1541-II: U4) – der Multi-Speeder liefert jetzt das DOS; ein verbliebenes ROM führt zu einem Adresskonflikt.
 4. Die Multi-Speeder-Platine in den CPU-Sockel stecken, die 6502 in den Sockel U1 der Platine setzen.
 5. Das Parallelkabel von CN2 zum Userport des Rechners verbinden (CN2 Pin 1 CA2 → FLAG2, Pin 2–9 PA0–PA7 → PB0–PB7, Pin 10 CA1 ← PC2; Handbuch Kapitel 2.4).
-6. Im Rechner einen DolphinDos26-Kernal einsetzen: `C64DolphinDos26.bin` (C64), `C64IIDolphinDos26.bin` (C64 II und C64-Modus des C128); den C128-Kernal für den C128-Modus gibt es im Release von [DolphinDOS26](https://github.com/FraEgg/DolphinDOS26).
+6. Im Rechner einen DolphinDos26-Kernal einsetzen: `C64DolphinDos26.bin` (C64), `C64IIDolphinDos26.bin` (C64 II und C64-Modus des C128); den C128-Kernal für den C128-Modus gibt es im Release von [DolphinDOS26](https://github.com/FraEgg/DolphinDOS).
 7. Beim ersten Start meldet sich das Laufwerk mit `73,CBM DOS V2.6 1541` (Bank 1). Mit `OPEN 1,8,15,"I:8@RNROM":CLOSE 1` umschalten, die Leuchtdiode blinkt achtmal. `@` meldet `73,DOLPHINDOS26 1541,00,00`, beim Laden erscheint `LOADING DD:`.
 8. Das RAM mit `MS-MEMTEST` von der MS-Tools-Diskette prüfen.
 
@@ -337,7 +339,7 @@ Die C64-Kernals [`C64DolphinDos26.bin`](rom/C64DolphinDos26.bin) und [`C64IIDolp
 
 **Bitte prüfe selbst, ob du wegen der Nutzung eine offizielle JiffyDOS-Lizenz erwerben solltest:** <https://www.jiffydos.com>
 
-Einzelheiten: [DolphinDOS26 – JiffyDOS-Lizenz](https://github.com/FraEgg/DolphinDOS26#jiffydos-lizenz-bitte-pr%C3%BCfen).
+Einzelheiten: [DolphinDOS26 – JiffyDOS-Lizenz](https://github.com/FraEgg/DolphinDOS#jiffydos-lizenz-bitte-pr%C3%BCfen).
 
 ## Danksagung
 
