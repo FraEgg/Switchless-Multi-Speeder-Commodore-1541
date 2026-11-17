@@ -8,6 +8,7 @@
 
 | | English | Deutsch |
 |---|---|---|
+| MS-ROM-Builder (browser tool for your own EPROM images) | [HTML](rom-builder/MS-ROM-Builder.html) | [HTML](rom-builder/MS-ROM-Builder.html) |
 | 1541 Multi-Speeder V3 manual (hardware, parallel cable, C64 kernal, build instructions, BOM) | [PDF](manuals/en/MultiSpeeder1541_Manual.pdf) | [PDF](manuals/de/MultiSpeeder1541_Handbuch.pdf) |
 | DolphinDos26 manual (operation, commands, MS-Tools) | [DolphinDOS26](https://github.com/FraEgg/DolphinDOS) | [DolphinDOS26](https://github.com/FraEgg/DolphinDOS) |
 | Interactive bill of materials (open in a browser) | [HTML](hardware/bom/v3.3_1541_CPU_THT_DD3_Multi-Speeder_512KB_ibom.html) | [HTML](hardware/bom/v3.3_1541_CPU_THT_DD3_Multi-Speeder_512KB_ibom.html) |
@@ -59,9 +60,13 @@ The DolphinDos26 ROMs are the same as in the [DolphinDOS26](https://github.com/F
 |---|---|---|---|
 | `1@RNROM` | `$00000` | Commodore DOS 2.6 | `73,CBM DOS V2.6 1541` |
 | `2@RNROM` | `$10000` | DolphinDOS 2.0 (original, cable on VIA1) | `73,DOLPHINDOS.2 1541` |
-| `3@RNROM` … `6@RNROM` | `$20000` … `$50000` | Commodore DOS 2.6 | `73,CBM DOS V2.6 1541` |
+| `3@RNROM` | `$20000` | Commodore DOS 2.6, free for further DOS versions | `73,CBM DOS V2.6 1541` |
+| `4@RNROM` | `$30000` | Commodore DOS 2.6; recommended place for your own JiffyDOS ROM | `73,CBM DOS V2.6 1541` |
+| `5@RNROM`, `6@RNROM` | `$40000`, `$50000` | Commodore DOS 2.6, free for further DOS versions | `73,CBM DOS V2.6 1541` |
 | `7@RNROM` | `$60000` | **DolphinDos26DD2** (cable on VIA1) | `73,DOLPHINDOS26  DD2` |
 | `8@RNROM` | `$70000` | **DolphinDos26** (cable on the PIA) | `73,DOLPHINDOS26 1541` |
+
+**JiffyDOS:** JiffyDOS is not part of the project and is not contained in any template. If you own a licensed JiffyDOS ROM for the 1541, the best place for it is **bank 4** (`4@RNROM`): the 16 KB file goes to the end of the bank, from offset `$3C000` of the image. Banks 3, 5 and 6 are suitable as well. The easiest way is the MS-ROM-Builder (see below).
 
 ## Memory map of the drive
 
@@ -130,6 +135,17 @@ ATmega328P fuse bytes: low `0xFF`, high `0xDE`, extended `0xFD`, lock bits `0xCF
 
 **Ordering the boards:** The boards can be made by any common PCB manufacturer from the Gerber files.
 
+## MS-ROM-Builder (build your own EPROM images)
+
+[`rom-builder/MS-ROM-Builder.html`](rom-builder/MS-ROM-Builder.html) is a browser tool for assembling the 512 KB EPROM image of the 1541 Multi-Speeder yourself. Download the file and open it in a current browser – no installation, works offline on Windows, macOS and Linux, and the ROM files never leave your computer. The tool contains no ROMs. It is one tool for all three Multi-Speeder boards (1541, external 1571, C128DCR); choose **1541** at the top right.
+
+- All eight banks with the slots of the 1541: whole bank (64 KB), ROM `$8000`–`$FFFF` (32 KB), DOS ROM `$C000`–`$FFFF` (16 KB) or two single 8 KB ROMs. The template `C1541_29F040.BIN` is preset; a second preset holds SpeedDos26 in bank 3.
+- Drop your ROM files in: they are assigned by their checksum, or placed directly onto a slot. Finished images can be opened, split into their parts and single banks replaced.
+- Checks for missing, different or unknown ROMs, JiffyDOS content and reset vectors; warns when DolphinDos26 is placed in banks 1 to 4 (it needs the PIA, banks 5 to 8) and names the kernal that belongs to a bank. Shows solder jumper J2 for 29F040, SST39SF040 or 27C040.
+- Download the finished 512 KB file with its MD5; save and load the layout as a small project file (no ROM data). German and English.
+
+<p align="center"><img src="assets/ms-rom-builder.png" alt="MS-ROM-Builder" width="640"></p>
+
 ## Installation in short
 
 1. Program the **29F040** for the Multi-Speeder board with the template `C1541_29F040.BIN` or with your own image (alternatives: 27C040 or SST39SF040). Set solder jumper **J2** for the EPROM type.
@@ -160,6 +176,7 @@ manuals/en, de   1541 Multi-Speeder V3 manual as PDF
 rom/             DolphinDos26 ROMs for the 1541 and the C64 (also C64 mode of the C128),
                  EPROM template C1541_29F040.BIN (drive)
 ms-tools/        ms-tools.d64
+rom-builder/     MS-ROM-Builder: browser tool for your own EPROM images
 hardware/        Gerber, schematics, BOM, GAL and ATmega files (V3.3)
 assets/          Images for this page
 tools/           Maintenance scripts for this repository (make_eprom_1541.py, update_release.py)
@@ -232,9 +249,13 @@ Die DolphinDos26-ROMs sind dieselben wie im Release von [DolphinDOS26](https://g
 |---|---|---|---|
 | `1@RNROM` | `$00000` | Commodore-DOS 2.6 | `73,CBM DOS V2.6 1541` |
 | `2@RNROM` | `$10000` | DolphinDOS 2.0 (Original, Kabel am VIA1) | `73,DOLPHINDOS.2 1541` |
-| `3@RNROM` … `6@RNROM` | `$20000` … `$50000` | Commodore-DOS 2.6 | `73,CBM DOS V2.6 1541` |
+| `3@RNROM` | `$20000` | Commodore-DOS 2.6, frei für weitere DOS-Versionen | `73,CBM DOS V2.6 1541` |
+| `4@RNROM` | `$30000` | Commodore-DOS 2.6; Empfehlung: Platz für ein eigenes JiffyDOS-ROM | `73,CBM DOS V2.6 1541` |
+| `5@RNROM`, `6@RNROM` | `$40000`, `$50000` | Commodore-DOS 2.6, frei für weitere DOS-Versionen | `73,CBM DOS V2.6 1541` |
 | `7@RNROM` | `$60000` | **DolphinDos26DD2** (Kabel am VIA1) | `73,DOLPHINDOS26  DD2` |
 | `8@RNROM` | `$70000` | **DolphinDos26** (Kabel am PIA) | `73,DOLPHINDOS26 1541` |
+
+**JiffyDOS:** JiffyDOS gehört nicht zum Projekt und ist in keiner Vorlage enthalten. Wer ein eigenes, lizenziertes JiffyDOS-ROM für die 1541 besitzt, legt es am besten in **Bank 4** (`4@RNROM`): die 16-KB-Datei kommt an das Ende der Bank, ab Offset `$3C000` des Abbilds. Die Bänke 3, 5 und 6 eignen sich ebenso. Am einfachsten geht das mit dem MS-ROM-Builder (siehe unten).
 
 ## Speicherbelegung des Laufwerks
 
@@ -298,6 +319,17 @@ Fuse-Bytes des ATmega328P: Low `0xFF`, High `0xDE`, Extended `0xFD`, Lock-Bits `
 
 **Platinen bestellen:** Die Platinen lassen sich aus den Gerber-Dateien bei jedem üblichen Leiterplattenhersteller fertigen.
 
+## MS-ROM-Builder (EPROM-Abbilder selbst bauen)
+
+[`rom-builder/MS-ROM-Builder.html`](rom-builder/MS-ROM-Builder.html) ist ein Browser-Tool, mit dem sich das 512-KB-EPROM-Abbild des 1541 Multi-Speeders selbst zusammenstellen lässt. Die Datei herunterladen und in einem aktuellen Browser öffnen – ohne Installation, offline unter Windows, macOS und Linux, und die ROM-Dateien verlassen den Rechner nicht. Das Tool enthält keine ROMs. Es ist ein Tool für alle drei Multi-Speeder-Platinen (1541, externe 1571, C128DCR); oben rechts **1541** wählen.
+
+- Alle acht Bänke mit den Steckplätzen der 1541: ganze Bank (64 KB), ROM `$8000`–`$FFFF` (32 KB), DOS-ROM `$C000`–`$FFFF` (16 KB) oder zwei einzelne 8-KB-ROMs. Die Vorlage `C1541_29F040.BIN` ist voreingestellt; eine zweite Voreinstellung enthält SpeedDos26 in Bank 3.
+- ROM-Dateien hineinziehen: Sie werden über ihre Prüfsumme zugeordnet oder direkt auf einen Steckplatz gelegt. Fertige Abbilder lassen sich öffnen, in ihre Teile zerlegen und einzelne Bänke tauschen.
+- Prüfung auf fehlende, abweichende oder unbekannte ROMs, JiffyDOS-Inhalt und Reset-Vektoren; warnt, wenn DolphinDos26 in Bank 1 bis 4 liegt (es braucht den PIA, Bank 5 bis 8), und nennt den Kernal, der zu einer Bank gehört. Zeigt die Lötbrücke J2 für 29F040, SST39SF040 oder 27C040.
+- Die fertige 512-KB-Datei mit MD5 herunterladen; die Belegung als kleine Projektdatei speichern und laden (ohne ROM-Daten). Deutsch und Englisch.
+
+<p align="center"><img src="assets/ms-rom-builder.png" alt="MS-ROM-Builder" width="640"></p>
+
 ## Einbau in Kürze
 
 1. Den **29F040** der Multi-Speeder-Platine mit der Vorlage `C1541_29F040.BIN` oder mit einem eigenen Abbild brennen (alternativ 27C040 oder SST39SF040). Die Lötbrücke **J2** passend zum EPROM-Typ setzen.
@@ -323,6 +355,7 @@ manuals/en, de   Handbuch 1541 Multi-Speeder V3 als PDF
 rom/             DolphinDos26-ROMs für die 1541 und den C64 (auch C64-Modus des C128),
                  EPROM-Vorlage C1541_29F040.BIN (Laufwerk)
 ms-tools/        ms-tools.d64
+rom-builder/     MS-ROM-Builder: Browser-Tool für eigene EPROM-Abbilder
 hardware/        Gerber, Schaltpläne, Stückliste, GAL- und ATmega-Dateien (V3.3)
 assets/          Bilder für diese Seite
 tools/           Pflegeskripte für dieses Repository (make_eprom_1541.py, update_release.py)
