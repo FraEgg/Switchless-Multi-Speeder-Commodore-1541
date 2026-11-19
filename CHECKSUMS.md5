@@ -11,12 +11,12 @@ ad27a754855f96ea33489a7a17e641b4  hardware/gal/ATF16V8_PAL_Adressendecoder_V3PIA
 8541ebdb5f2ca66c82be37ba8373b875  hardware/gerber/v3.3_1541_CPU_THT_DD3_Multi-Speeder_512KB.kicad_pcb.zip
 d404e8c2e5c4ad69751d2d12da25ce7e  hardware/schematics/v3.3_1541_CPU_THT_DD3_Multi-Speeder_512KB_PCB.pdf
 9c5ca9bfe7bff76f4062f8c3decb0b5c  hardware/schematics/v3.3_1541_CPU_THT_DD3_Multi-Speeder_512KB_schematics.pdf
-070b781aa963ae22909dc0c930b1e783  manuals/de/MultiSpeeder1541_Handbuch.pdf
-99407e20ab43f1a7772241de0b83cad7  manuals/en/MultiSpeeder1541_Manual.pdf
+caf8f19b1edc06c6d4339dc6e3acbc90  manuals/de/MultiSpeeder1541_Handbuch.pdf
+4d777b1cb9048ad8579947b7f53e31d9  manuals/en/MultiSpeeder1541_Manual.pdf
 59744e65e023c4637e14d3de09a112fd  ms-tools/ms-tools.d64
 4b8a5b025c001c8cfa8c515fbe7196e2  rom/1541DolphinDos26.bin
 38cb007b121e3f2316c00958757e07fa  rom/C1541_29F040.BIN
 e9be35823d67c7987845b8488f003943  rom/C1541_DOLPHINDOS26DD2.bin
-caa927113379f801d3cc5b12f99fb0e7  rom/C64DolphinDos26.bin
-79d63d9378c70151aa6b3d217a69e883  rom/C64IIDolphinDos26.bin
-c4c704a5a66b434bb95f1c8a83180d66  rom-builder/MS-ROM-Builder.html
+f557d358acecf748c10e62b99fea1c89  rom/C64DolphinDos26.bin
+c6ea6480dfaf4fcf93cf3d4d49afa54e  rom/C64IIDolphinDos26.bin
+daa5135d2a870d9708e8fcda431fd657  rom-builder/MS-ROM-Builder.html
