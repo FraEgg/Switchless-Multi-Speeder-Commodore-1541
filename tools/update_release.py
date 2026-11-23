@@ -45,7 +45,7 @@ ROMS = ['1541DolphinDos26.bin', 'C1541_DOLPHINDOS26DD2.bin', 'C64IIDolphinDos26.
 # EPROM template, built by tools/make_eprom_1541.py: Commodore DOS 2.6 in banks 1 and 3-6,
 # DolphinDOS 2.0 in bank 2, DolphinDos26DD2 in bank 7, DolphinDos26 in bank 8
 TEMPLATES = ['C1541_29F040.BIN']
-# German manual -> English manual (dd25/doc/handbuch: make m41, make en)
+# German manual -> English manual (dd26/doc/handbuch: make m41, make en)
 MANUALS = {'MultiSpeeder1541_Handbuch.pdf': 'MultiSpeeder1541_Manual.pdf'}
 CHECKSUMMED = ('rom', 'ms-tools', 'manuals', 'hardware', 'rom-builder')
 # Browser tool MS-ROM-Builder (one tool for 1541, external 1571 and C128DCR) from its development
@@ -74,13 +74,13 @@ def main():
     ap = argparse.ArgumentParser()
     ap.add_argument('--root', default=str(ROOT), help='project folder with Builds and MS-Tools')
     ap.add_argument('--manuals', help='folder with the German PDF (default: Builds)')
-    ap.add_argument('--manuals-en', help='folder with the English PDF (default: dd25/doc/handbuch/build)')
+    ap.add_argument('--manuals-en', help='folder with the English PDF (default: dd26/doc/handbuch/build)')
     ap.add_argument('--check', action='store_true', help='report only, change nothing')
     a = ap.parse_args()
     root = pathlib.Path(a.root).resolve()
     builds = root / 'Builds'
     man_de = pathlib.Path(a.manuals) if a.manuals else builds
-    man_en = pathlib.Path(a.manuals_en) if a.manuals_en else root / 'dd25' / 'doc' / 'handbuch' / 'build'
+    man_en = pathlib.Path(a.manuals_en) if a.manuals_en else root / 'dd26' / 'doc' / 'handbuch' / 'build'
     bad = []
 
     for r in ROMS:

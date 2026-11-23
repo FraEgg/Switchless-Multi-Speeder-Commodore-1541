@@ -50,7 +50,7 @@ With **DolphinDos26** in the 1541 and a **DolphinDos26 kernal** in the computer,
 | [`C1541_DOLPHINDOS26DD2.bin`](rom/C1541_DOLPHINDOS26DD2.bin) | EPROM U3, bank 7 (offset `$60000`) | DolphinDos26DD2 (64 KB, parallel cable on VIA1 like DolphinDOS 2.0/SpeedDOS) |
 | [`C64DolphinDos26.bin`](rom/C64DolphinDos26.bin) | kernal socket of the C64 | C64 kernal DolphinDos26 (8 KB) |
 | [`C64IIDolphinDos26.bin`](rom/C64IIDolphinDos26.bin) | combined BASIC/kernal ROM of the C64 II, or ROM 251913 of the C128 (C64 mode) | C64 BASIC and kernal DolphinDos26 (16 KB) |
-| [`ms-tools.d64`](ms-tools/ms-tools.d64) | disk | MS-Tools for testing (`MS-MEMTEST`) and copying |
+| [`ms-tools.d64`](ms-tools/ms-tools.d64) | disk | MS-Tools for testing (`MS-DIAG`) and copying |
 | [`hardware/gal`](hardware/gal) | GAL ATF16V8B (U7) | address decoder `ATF16V8_PAL_Adressendecoder_V3PIA_1541.jed` |
 | [`hardware/atmega328p`](hardware/atmega328p) | ATmega328P (U6) | ROM switcher firmware (`.hex`), source (`.ino`), XGecu project (`.mpj`) |
 
@@ -155,7 +155,7 @@ ATmega328P fuse bytes: low `0xFF`, high `0xDE`, extended `0xFD`, lock bits `0xCF
 5. Connect the parallel cable from CN2 to the user port of the computer (CN2 pin 1 CA2 → FLAG2, pins 2–9 PA0–PA7 → PB0–PB7, pin 10 CA1 ← PC2; manual chapter 2.4).
 6. In the computer, fit a DolphinDos26 kernal: `C64DolphinDos26.bin` (C64), `C64IIDolphinDos26.bin` (C64 II, and C64 mode of the C128); the C128 kernal for C128 mode is in the [DolphinDOS26](https://github.com/FraEgg/DolphinDOS) release.
 7. At the first start the drive reports `73,CBM DOS V2.6 1541` (bank 1). Switch with `OPEN 1,8,15,"I:8@RNROM":CLOSE 1`, the LED flashes eight times. `@` reports `73,DOLPHINDOS26 1541,00,00`, loading shows `LOADING DD:`.
-8. Test the RAM with `MS-MEMTEST` from the MS-Tools disk.
+8. Test the RAM with `MS-DIAG` from the MS-Tools disk.
 
 <p align="center">
 <img src="assets/installation-1541-I.jpg" alt="Multi-Speeder in a Commodore 1541" width="360">
@@ -239,7 +239,7 @@ Mit **DolphinDos26** in der 1541 und einem **DolphinDos26-Kernal** im Rechner bi
 | [`C1541_DOLPHINDOS26DD2.bin`](rom/C1541_DOLPHINDOS26DD2.bin) | EPROM U3, Bank 7 (Offset `$60000`) | DolphinDos26DD2 (64 KB, Parallelkabel am VIA1 wie bei DolphinDOS 2.0/SpeedDOS) |
 | [`C64DolphinDos26.bin`](rom/C64DolphinDos26.bin) | Kernal-Sockel des C64 | C64-Kernal DolphinDos26 (8 KB) |
 | [`C64IIDolphinDos26.bin`](rom/C64IIDolphinDos26.bin) | kombiniertes BASIC-/Kernal-ROM des C64 II oder ROM 251913 des C128 (C64-Modus) | C64-BASIC und -Kernal DolphinDos26 (16 KB) |
-| [`ms-tools.d64`](ms-tools/ms-tools.d64) | Diskette | MS-Tools zum Testen (`MS-MEMTEST`) und Kopieren |
+| [`ms-tools.d64`](ms-tools/ms-tools.d64) | Diskette | MS-Tools zum Testen (`MS-DIAG`) und Kopieren |
 | [`hardware/gal`](hardware/gal) | GAL ATF16V8B (U7) | Adressdecoder `ATF16V8_PAL_Adressendecoder_V3PIA_1541.jed` |
 | [`hardware/atmega328p`](hardware/atmega328p) | ATmega328P (U6) | Firmware des ROM-Umschalters (`.hex`), Quelltext (`.ino`), XGecu-Projekt (`.mpj`) |
 
@@ -339,7 +339,7 @@ Fuse-Bytes des ATmega328P: Low `0xFF`, High `0xDE`, Extended `0xFD`, Lock-Bits `
 5. Das Parallelkabel von CN2 zum Userport des Rechners verbinden (CN2 Pin 1 CA2 → FLAG2, Pin 2–9 PA0–PA7 → PB0–PB7, Pin 10 CA1 ← PC2; Handbuch Kapitel 2.4).
 6. Im Rechner einen DolphinDos26-Kernal einsetzen: `C64DolphinDos26.bin` (C64), `C64IIDolphinDos26.bin` (C64 II und C64-Modus des C128); den C128-Kernal für den C128-Modus gibt es im Release von [DolphinDOS26](https://github.com/FraEgg/DolphinDOS).
 7. Beim ersten Start meldet sich das Laufwerk mit `73,CBM DOS V2.6 1541` (Bank 1). Mit `OPEN 1,8,15,"I:8@RNROM":CLOSE 1` umschalten, die Leuchtdiode blinkt achtmal. `@` meldet `73,DOLPHINDOS26 1541,00,00`, beim Laden erscheint `LOADING DD:`.
-8. Das RAM mit `MS-MEMTEST` von der MS-Tools-Diskette prüfen.
+8. Das RAM mit `MS-DIAG` von der MS-Tools-Diskette prüfen.
 
 ## Bekannte Grenzen
 
