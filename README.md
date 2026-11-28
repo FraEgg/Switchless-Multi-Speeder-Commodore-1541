@@ -22,6 +22,7 @@
 | DolphinDOS26: firmware, C64/C128 kernals, MS-Tools, manuals | [github.com/FraEgg/DolphinDOS](https://github.com/FraEgg/DolphinDOS) |
 | Switchless 8x Multi-Floppy-Speeder for the external 1571 | [github.com/FraEgg/Switchless-Multi-Speeder-Commodore-1571](https://github.com/FraEgg/Switchless-Multi-Speeder-Commodore-1571) |
 | Switchless 8x Multi-Floppy-Speeder for the C128DCR (internal 1571) | [github.com/FraEgg/Switchless-Multi-Speeder-Commodore-C128DCR-1571](https://github.com/FraEgg/Switchless-Multi-Speeder-Commodore-C128DCR-1571) |
+| FPGA core TRX64 C64-MS: the C64 with a 1541 and this Multi-Speeder V3 for the C64 Ultimate and the Ultimate 64 Elite II | [github.com/FraEgg/TRX64U-MultiCore-Multi-Speeder](https://github.com/FraEgg/TRX64U-MultiCore-Multi-Speeder) |
 
 <p align="center"><img src="assets/installation-1541-II.jpg" alt="1541 Multi-Speeder fitted in a Commodore 1541-II" width="560"></p>
 
@@ -40,6 +41,8 @@ The **1541 Switchless 8x Multi-Floppy-Speeder V3** speeds up the **Commodore 154
 - RAMBoard-compatible for nibbler programs (banks 1–4)
 
 With **DolphinDos26** in the 1541 and a **DolphinDos26 kernal** in the computer, the drive gets parallel transfer, track cache, whole disks in the drive RAM (`CDR`/`CDW`), a RAM disk (`CDM`), the MS-Addon-API and the MS-Tools. The original Commodore DOS and other speeders stay available in the other banks.
+
+Without real hardware, the Multi-Speeder V3 also runs as an FPGA core: **TRX64 C64-MS** for TRX64U MultiCore recreates the C64 with a 1541 and this board in the **C64 Ultimate** and the **Ultimate 64 Elite II**, using the same image `C1541_29F040.BIN` from the `rom` folder of this repository. See [TRX64U-MultiCore-Multi-Speeder](https://github.com/FraEgg/TRX64U-MultiCore-Multi-Speeder).
 
 ## Which files do I need?
 
@@ -229,6 +232,8 @@ Der **1541 Switchless 8x Multi-Floppy-Speeder V3** beschleunigt die Diskettenlau
 - RAMBoard-kompatibel für Nibbler-Programme (Bänke 1–4)
 
 Mit **DolphinDos26** in der 1541 und einem **DolphinDos26-Kernal** im Rechner bietet das Laufwerk Parallelübertragung, Track-Cache, ganze Disketten im Laufwerks-RAM (`CDR`/`CDW`), eine RAM-Disk (`CDM`), die MS-Addon-API und die MS-Tools. Das originale Commodore-DOS und andere Speeder bleiben in den übrigen Bänken erreichbar.
+
+Auch ohne echte Hardware läuft der Multi-Speeder V3, nämlich als FPGA-Core: **TRX64 C64-MS** für TRX64U MultiCore bildet den C64 mit 1541 und dieser Platine im **C64 Ultimate** und im **Ultimate 64 Elite II** nach und verwendet dasselbe Image `C1541_29F040.BIN` aus dem Ordner `rom` dieses Repositorys. Siehe [TRX64U-MultiCore-Multi-Speeder](https://github.com/FraEgg/TRX64U-MultiCore-Multi-Speeder).
 
 ## Welche Dateien brauche ich?
 
